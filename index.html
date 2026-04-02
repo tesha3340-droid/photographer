@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Aarav Visuals Studio | Photographer & Cinematographer</title>
+  <!-- Google Fonts: Elegant + Modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 10px;
+    }
+
+    h1, h2, h3, .logo, .tagline, .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      border-left: 5px solid #d4af37;
+      padding-left: 20px;
+      margin-bottom: 3rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* loading animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s;
+    }
+    .loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader .gold-ring {
+      width: 70px;
+      height: 70px;
+      border: 5px solid rgba(212, 175, 55, 0.2);
+      border-top: 5px solid #d4af37;
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .logo span {
+      color: #d4af37;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #f0f0f0;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #d4af37;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #d4af37;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      font-weight: 600;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.3s ease;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: #d4af37;
+      color: #0a0a0a;
+    }
+    .btn-primary:hover {
+      background: #b38f2a;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+    .btn-outline {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: #d4af37;
+      color: #0a0a0a;
+      transform: translateY(-3px);
+    }
+
+    .hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: url('https://drive.google.com/uc?export=view&id=1SZpcDPHme75IOVxZ3dNdns3TqTXgEVgM') center/cover no-repeat;
+  background-attachment: fixed;
+}
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      animation: fadeUp 1s ease;
+    }
+    .hero-content h1 {
+      font-size: 4.2rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero-tag {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: #e0e0e0;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* stats */
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: #111111;
+      padding: 50px 0;
+      margin-top: -1px;
+      gap: 30px;
+    }
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #d4af37;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* cards & glassmorphism */
+    .card, .gear-card, .testimonial-card {
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 24px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: 0.3s;
+      overflow: hidden;
+    }
+    .gear-card, .testimonial-card {
+      padding: 24px;
+    }
+    .gear-card:hover {
+      transform: translateY(-8px);
+      border-color: #d4af37;
+    }
+
+    /* skills progress */
+    .skill-item {
+      margin-bottom: 1.8rem;
+    }
+    .skill-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      background: #2c2c2c;
+      border-radius: 20px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      background: #d4af37;
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      transition: width 1s ease;
+    }
+
+    /* portfolio grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .portfolio-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4 / 3;
+    }
+    .portfolio-item img, .portfolio-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .portfolio-item:hover img, .portfolio-item:hover video {
+      transform: scale(1.08);
+    }
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, #000000cc, transparent);
+      padding: 20px;
+      color: white;
+      font-weight: bold;
+      transform: translateY(100%);
+      transition: 0.4s;
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+    }
+
+    /* modal lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .modal-content {
+      max-width: 85%;
+      max-height: 85%;
+    }
+    .modal-content img, .modal-content video {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: #d4af37;
+      cursor: pointer;
+    }
+
+    /* timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .timeline-item {
+      border-left: 3px solid #d4af37;
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* footer & scroll-top */
+    .footer {
+      background: #050505;
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid #222;
+    }
+    .social-icons a {
+      color: #d4af37;
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: 0.3s;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #d4af37;
+      color: black;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 99;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(10,10,10,0.98);
+        width: 70%;
+        height: 100vh;
+        padding: 40px;
+        transition: 0.3s;
+        gap: 2rem;
+        backdrop-filter: blur(12px);
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section {
+      padding: 80px 0;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      color: white;
+    }
+    .map-placeholder {
+      background: #1e1e1e;
+      height: 250px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="gold-ring"></div>
+</div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">Aarav<span>Visuals</span></div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#gears">Gears</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- HOME / HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1>Hi, I'm Aarav –<br>Photographer & Cinematographer</h1>
+      <div class="hero-tag">"I turn moments into timeless memories"</div>
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn btn-primary">View Work</a>
+        <a href="#contact" class="btn btn-outline">Book a Shoot</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats container">
+    <div class="stat-item"><div class="stat-number" data-count="5">0</div><div>+ Years Experience</div></div>
+    <div class="stat-item"><div class="stat-number" data-count="150">0</div><div>+ Projects</div></div>
+    <div class="stat-item"><div class="stat-number" data-count="100">0</div><div>+ Happy Clients</div></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+        <div style="flex:1;"><img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aarav" style="width:100%; border-radius: 24px; object-fit: cover;"></div>
+        <div style="flex:1;">
+          <p style="font-size:1.2rem; margin-bottom:20px;">I believe every frame tells a story — from the nervous laughter before a wedding to the raw energy of a concert. With over 5 years behind the lens, I don't just capture photos; I preserve emotions.</p>
+          <p style="margin-bottom:20px;">My mission is to create cinematic memories that resonate for a lifetime. Vision: To redefine visual storytelling with authenticity and elegance.</p>
+          <p><strong>Mission:</strong> Bring out the unseen beauty in every moment.<br>
+          <strong>Vision:</strong> Become India's most trusted luxury visual artist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS with animated progress -->
+  <section id="skills">
+    <div class="container">
+      <h2>My Expertise</h2>
+      <div class="skills-container">
+        <div class="skill-item"><div class="skill-title"><span>Photography</span><span>95%</span></div><div class="progress-bar"><div class="progress-fill" data-skill="95"></div></div></div>
+        <div class="skill-item"><div class="skill-title"><span>Cinematography</span><span>90%</span></div><div class="progress-bar"><div class="progress-fill" data-skill="90"></div></div></div>
+        <div class="skill-item"><div class="skill-title"><span>Video Editing</span><span>92%</span></div><div class="progress-bar"><div class="progress-fill" data-skill="92"></div></div></div>
+        <div class="skill-item"><div class="skill-title"><span>Color Grading</span><span>88%</span></div><div class="progress-bar"><div class="progress-fill" data-skill="88"></div></div></div>
+        <div class="skill-item"><div class="skill-title"><span>Storytelling</span><span>93%</span></div><div class="progress-bar"><div class="progress-fill" data-skill="93"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEARS SECTION -->
+  <section id="gears">
+    <div class="container">
+      <h2>My Gear</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 24px;">
+        <div class="gear-card"><i class="fas fa-camera" style="font-size:2.5rem; color:#d4af37;"></i><h3>Sony A7 IV</h3><p>Full-frame excellence</p></div>
+        <div class="gear-card"><i class="fas fa-eye" style="font-size:2.5rem; color:#d4af37;"></i><h3>24-70mm GM</h3><p>Versatile masterpiece</p></div>
+        <div class="gear-card"><i class="fas fa-drone" style="font-size:2.5rem; color:#d4af37;"></i><h3>DJI Mini 3 Pro</h3><p>Aerial cinematography</p></div>
+        <div class="gear-card"><i class="fas fa-video" style="font-size:2.5rem; color:#d4af37;"></i><h3>DJI Ronin</h3><p>Silky gimbal moves</p></div>
+        <div class="gear-card"><i class="fas fa-lightbulb" style="font-size:2.5rem; color:#d4af37;"></i><h3>Pro Lighting Kit</h3><p>Studio & outdoor</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience">
+    <div class="container">
+      <h2>Journey & Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item"><strong>2024 – Present</strong><br>Freelance Cinematographer & Creative Director</div>
+        <div class="timeline-item"><strong>2022 – 2024</strong><br>Studio Photographer at XYZ Studio (Lead Visual Artist)</div>
+        <div class="timeline-item"><strong>2020 – 2022</strong><br>Started Freelancing – Weddings & Commercials</div>
+        <div class="timeline-item"><strong>2018 – 2020</strong><br>Assistant to Renowned Fashion Photographer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO 6 categories with image + video and modal -->
+  <section id="portfolio">
+    <div class="container">
+      <h2>Portfolio Stories</h2>
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <h2>Kind Words</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 30px;">
+        <div class="testimonial-card"><i class="fas fa-quote-left" style="color:#d4af37; font-size:2rem;"></i><p>"Aarav captured our wedding with such emotion — every frame felt like a movie. Absolute legend!"</p><h4>— Meera & Raj</h4></div>
+        <div class="testimonial-card"><i class="fas fa-quote-left" style="color:#d4af37; font-size:2rem;"></i><p>"The pre-wedding cinematic trailer blew our minds. Professional, creative, and kind."</p><h4>— Anjali Sharma</h4></div>
+        <div class="testimonial-card"><i class="fas fa-quote-left" style="color:#d4af37; font-size:2rem;"></i><p>"Best concert photographer in town. Energy translated perfectly."</p><h4>— Rohan Mehta</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <h2>Let's Create Magic</h2>
+      <div class="contact-grid">
+        <div>
+          <form id="contactForm">
+            <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+            <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+            <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
+            <div class="form-group"><textarea rows="4" placeholder="Tell me about your vision..."></textarea></div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+          <div style="margin-top: 30px;"><i class="fab fa-whatsapp" style="color:#25D366;"></i> <strong>WhatsApp:</strong> +91 98765 43210 &nbsp;&nbsp;| <i class="far fa-envelope"></i> aarav@visuals.studio</div>
+          <div><i class="fas fa-map-marker-alt"></i> Mumbai | Delhi | Worldwide</div>
+        </div>
+        <div><div class="map-placeholder"><iframe width="100%" height="250" style="border:0; border-radius:20px;" loading="lazy" src="https://maps.google.com/maps?q=Mumbai&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  <p style="margin-top:20px;">© 2025 Aarav Visuals Studio — Capturing Emotions, Creating Stories</p>
+</footer>
+<div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+
+<!-- MODAL LIGHTBOX -->
+<div id="mediaModal" class="modal">
+  <span class="close-modal">&times;</span>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script>
+  // Portfolio items (6 categories: each has image + video placeholder)
+  const categories = [
+    { name: "Wedding Photography", img: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true },
+    { name: "Pre-Wedding Shoot", img: "https://images.pexels.com/photos/2253800/pexels-photo-2253800.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true },
+    { name: "Baby Shower", img: "https://images.pexels.com/photos/3585499/pexels-photo-3585499.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true },
+    { name: "Concert/Event", img: "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true },
+    { name: "Fashion Shoot", img: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true },
+    { name: "Travel Cinematics", img: "https://images.pexels.com/photos/808465/pexels-photo-808465.jpeg?auto=compress&cs=tinysrgb&w=600", video: "https://www.w3schools.com/html/mov_bbb.mp4", typeImg: true }
+  ];
+
+  const grid = document.getElementById('portfolioGrid');
+  function buildPortfolio() {
+    categories.forEach((cat, idx) => {
+      const item = document.createElement('div');
+      item.className = 'portfolio-item';
+      item.setAttribute('data-cat', cat.name);
+      // show image as preview, video hidden initially
+      item.innerHTML = `
+        <img src="${cat.img}" alt="${cat.name}" class="portfolio-media-img">
+        <video src="${cat.video}" muted style="display:none;" class="portfolio-media-vid"></video>
+        <div class="portfolio-overlay">${cat.name} <i class="fas fa-expand"></i></div>
+      `;
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(cat.img, cat.video);
+      });
+      grid.appendChild(item);
+    });
+  }
+
+  function openModal(imgSrc, videoSrc) {
+    const modal = document.getElementById('mediaModal');
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = '';
+    const isVideo = videoSrc && true; 
+    const media = document.createElement('div');
+    media.innerHTML = `
+      <img src="${imgSrc}" style="max-width:100%; border-radius:12px; display:block;" id="modalImg">
+      <video controls autoplay muted style="display:none; max-width:100%; border-radius:12px;" id="modalVideo"><source src="${videoSrc}" type="video/mp4"></video>
+      <div style="text-align:center; margin-top:20px;">
+        <button class="btn btn-outline" id="toggleMediaBtn">Watch Video</button>
+      </div>
+    `;
+    modalContent.appendChild(media);
+    const imgEl = document.getElementById('modalImg');
+    const vidEl = document.getElementById('modalVideo');
+    const toggleBtn = document.getElementById('toggleMediaBtn');
+    let showingVideo = false;
+    toggleBtn.addEventListener('click', () => {
+      if(!showingVideo) {
+        imgEl.style.display = 'none';
+        vidEl.style.display = 'block';
+        vidEl.play();
+        toggleBtn.innerText = 'View Photo';
+      } else {
+        imgEl.style.display = 'block';
+        vidEl.style.display = 'none';
+        vidEl.pause();
+        toggleBtn.innerText = 'Watch Video';
+      }
+      showingVideo = !showingVideo;
+    });
+    modal.style.display = 'flex';
+  }
+
+  document.querySelector('.close-modal').addEventListener('click', () => {
+    document.getElementById('mediaModal').style.display = 'none';
+  });
+  window.addEventListener('click', (e) => { if(e.target === document.getElementById('mediaModal')) document.getElementById('mediaModal').style.display = 'none'; });
+
+  // Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => { document.getElementById('loader').classList.add('fade-out'); }, 400);
+    buildPortfolio();
+    animateStats();
+    observeProgress();
+    fadeElements();
+  });
+
+  function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(el => {
+      let target = parseInt(el.getAttribute('data-count'));
+      let current = 0;
+      let update = setInterval(() => {
+        if(current < target) { current++; el.innerText = current; }
+        else clearInterval(update);
+      }, 20);
+    });
+  }
+
+  // scroll animations for progress bars
+  function observeProgress() {
+    const fills = document.querySelectorAll('.progress-fill');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          let widthVal = entry.target.getAttribute('data-skill');
+          entry.target.style.width = widthVal + '%';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    fills.forEach(fill => observer.observe(fill));
+  }
+
+  // fade up on scroll
+  function fadeElements() {
+    const faders = document.querySelectorAll('.skill-item, .gear-card, .testimonial-card, .timeline-item, .portfolio-item');
+    faders.forEach(el => { el.classList.add('fade-up'); });
+    const appearOnScroll = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => appearOnScroll.observe(el));
+  }
+
+  // mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+  document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
+
+  // scroll to top + smooth scroll
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => { scrollBtn.style.opacity = window.scrollY > 400 ? '1' : '0'; });
+  scrollBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      if(targetId && targetId !== "") {
+        const target = document.getElementById(targetId);
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  // contact form dummy alert
+  document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); alert('Thank you! Aarav will reach out soon.'); });
+</script>
+</body>
+</html>
