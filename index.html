@@ -211,8 +211,12 @@ section {
   align-items: flex-end;
   padding-bottom: 80px;
   position: relative;
-  background: url('wedding.jpg') center/cover no-repeat;
-  background-attachment: fixed;
+
+  background: url('wedding.jpg') no-repeat;
+  background-size: cover;
+
+  /* 🔥 THIS CONTROLS POSITION */
+  background-position: center 30%; 
 }
     .hero::before {
       content: '';
