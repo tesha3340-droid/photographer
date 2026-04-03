@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,45 @@
   <!-- Font Awesome 6 (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    .timeline-item {
+  border-left: 3px solid #d4af37;
+  padding-left: 24px;
+  margin-bottom: 20px;
+}
+
+/* 👉 ADD YOUR ABOUT CSS HERE */
+.about-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  flex: 1;
+}
+
+.about-img img {
+  width: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-highlight {
+  color: #d4af37;
+  font-size: 2.6rem; /* bigger */
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+/* existing code continues */
+section {
+  padding: 80px 0;
+}
+
     * {
       margin: 0;
       padding: 0;
@@ -165,14 +205,17 @@
       transform: translateY(-3px);
     }
 
-    .hero {
+.hero {
   min-height: 90vh;
   display: flex;
-  align-items: center;
+  justify-content: center; /* horizontal center */
+  align-items: flex-end;   /* bottom */
+  padding-bottom: 80px;
   position: relative;
-  background: ('Wedding.png.jpg');
+  background: url('YOUR-IMAGE-LINK') center/cover no-repeat;
   background-attachment: fixed;
 }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -180,29 +223,47 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.55);
-    }
+      background: rgba(0,0,0,0.55);}
+
     .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      animation: fadeUp 1s ease;
-    }
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  text-align: center; /* CENTER TEXT */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTER EVERYTHING */
+  animation: fadeUp 1s ease;
+}
     .hero-content h1 {
       font-size: 4.2rem;
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .hero-tag {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      color: #e0e0e0;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
+    .hero {
+  display: flex;
+  align-items: flex-end; /* push content to bottom */
+  padding-bottom: 80px;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.hero-main-text {
+  font-size: 2.5rem; /* smaller */
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hero-main-text {
+    white-space: normal; /* allow wrap on mobile */
+    font-size: 2rem;
+  }
+}
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -485,8 +546,7 @@
   <!-- HOME / HERO -->
   <section id="home" class="hero">
     <div class="container hero-content">
-      <h1>Hi, I'm Aarav –<br>Photographer & Cinematographer</h1>
-      <div class="hero-tag">"I turn moments into timeless memories"</div>
+      <h1 class="hero-main-text"> "I turn moments into timeless memories" </h1>
       <div class="hero-buttons">
         <a href="#portfolio" class="btn btn-primary">View Work</a>
         <a href="#contact" class="btn btn-outline">Book a Shoot</a>
@@ -502,19 +562,47 @@
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
-        <div style="flex:1;"><img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aarav" style="width:100%; border-radius: 24px; object-fit: cover;"></div>
-        <div style="flex:1;">
-          <p style="font-size:1.2rem; margin-bottom:20px;">I believe every frame tells a story — from the nervous laughter before a wedding to the raw energy of a concert. With over 5 years behind the lens, I don't just capture photos; I preserve emotions.</p>
-          <p style="margin-bottom:20px;">My mission is to create cinematic memories that resonate for a lifetime. Vision: To redefine visual storytelling with authenticity and elegance.</p>
-          <p><strong>Mission:</strong> Bring out the unseen beauty in every moment.<br>
-          <strong>Vision:</strong> Become India's most trusted luxury visual artist.</p>
-        </div>
+  <div class="container">
+    
+    <h2>About Me</h2>
+
+    <div class="about-wrapper">
+      
+      <!-- LEFT IMAGE -->
+      <div class="about-img">
+        <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aarav">
       </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="about-content">
+        <h3 class="about-highlight">
+          Hi, I'm Aarav – Photographer & Cinematographer
+        </h3>
+
+      <p style="font-size:1.2rem; margin-bottom:20px; line-height:1.8;">
+  I believe every frame tells a story — from the nervous laughter before a wedding to the raw energy of a concert. With over 5 years behind the lens, I don't just capture photos; I preserve emotions.
+</p>
+
+<p style="margin-bottom:20px; line-height:1.8;">
+  My mission is to create cinematic memories that resonate for a lifetime.
+</p>
+
+<p style="margin-bottom:12px; line-height:1.8;">
+  <strong>Vision:</strong> To redefine visual storytelling with authenticity and elegance.
+</p>
+
+<p style="margin-bottom:12px; line-height:1.8;">
+  <strong>Mission:</strong> Bring out the unseen beauty in every moment.
+</p>
+
+<p style="line-height:1.8;">
+  <strong>Vision:</strong> Become India's most trusted luxury visual artist.
+</p>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- SKILLS with animated progress -->
   <section id="skills">
