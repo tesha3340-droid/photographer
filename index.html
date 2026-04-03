@@ -704,14 +704,14 @@ section {
 
 <script>
   // Portfolio items (6 categories: each has image + video placeholder)
-  const categories = [
-    { <img src="wedding-shoot.jpg" alt="Aarav">
-    { <img src="pre-wedding.jpg" alt="Aarav">
-    {<img src="pregnancy shoot.jpg" alt="Aarav">
-    { <img src="pre-wedding.jpg" alt="Aarav">
-  {<img src="fashion-shoot.jpg" alt="Aarav">
-    {<img src="travel-shoot.jpg" alt="Aarav">
-  ];
+const categories = [
+  { name: "Wedding Photography", img: "wedding-shoot.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { name: "Pre-Wedding Shoot", img: "pre-wedding.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { name: "Baby Shower", img: "pregnancy-shoot.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { name: "Concert/Event", img: "concert.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { name: "Fashion Shoot", img: "fashion-shoot.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+  { name: "Travel Cinematics", img: "travel-shoot.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
+];
 
   const grid = document.getElementById('portfolioGrid');
   function buildPortfolio() {
