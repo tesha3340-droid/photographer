@@ -207,14 +207,13 @@ section {
 .hero {
   min-height: 90vh;
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: flex-end;   /* bottom */
+  justify-content: center;
+  align-items: flex-end;
   padding-bottom: 80px;
   position: relative;
-  background: url('wedding.jpg') ;
+  background: url('wedding.jpg') center/cover no-repeat;
   background-attachment: fixed;
 }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -336,11 +335,11 @@ section {
     }
 
     /* portfolio grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-    }
+    ..portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
     .portfolio-item {
       position: relative;
       border-radius: 20px;
@@ -706,30 +705,32 @@ section {
   // Portfolio items (6 categories: each has image + video placeholder)
 
 const categories = [
-  { <img src="wedding-shoot.jpg" alt="Aarav">
-  { <img src="pre-wedding.jpg" alt="Aarav">
-  {<img src="pregnancy shoot.jpg" alt="Aarav">
-
-  const grid = document.getElementById('portfolioGrid');
-  function buildPortfolio() {
-    categories.forEach((cat, idx) => {
-      const item = document.createElement('div');
-      item.className = 'portfolio-item';
-      item.setAttribute('data-cat', cat.name);
-      // show image as preview, video hidden initially
-      item.innerHTML = `
-        <img src="${cat.img}" alt="${cat.name}" class="portfolio-media-img">
-        <video src="${cat.video}" muted style="display:none;" class="portfolio-media-vid"></video>
-        <div class="portfolio-overlay">${cat.name} <i class="fas fa-expand"></i></div>
-      `;
-      item.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openModal(cat.img, cat.video);
-      });
-      grid.appendChild(item);
-    });
+  {
+    name: "Wedding",
+    img: "wedding-shoot.jpg",
+    video: ""
+  },
+  {
+    name: "Pre Wedding",
+    img: "pre-wedding.jpg",
+    video: ""
+  },
+  {
+    name: "Maternity",
+    img: "pregnancy-shoot.jpg",
+    video: ""
+  },
+  {
+    name: "Fashion",
+    img: "fashion-shoot.jpg",
+    video: ""
+  },
+  {
+    name: "Travel",
+    img: "travel-shoot.jpg",
+    video: ""
   }
-
+];
   function openModal(imgSrc, videoSrc) {
     const modal = document.getElementById('mediaModal');
     const modalContent = document.getElementById('modalContent');
