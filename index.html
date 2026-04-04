@@ -652,27 +652,6 @@ section {
   
  <script>
 
-const grid = document.getElementById('portfolioGrid');
-
-function buildPortfolio() {
-  categories.forEach((cat) => {
-    const item = document.createElement('div');
-    item.className = 'portfolio-item';
-
-    item.innerHTML = `
-      <img src="${cat.img}" alt="${cat.name}">
-      <div class="portfolio-overlay">${cat.name}</div>
-    `;
-
-    item.addEventListener('click', () => {
-      openModal(cat.img, cat.video);
-    });
-
-    grid.appendChild(item);
-  });
-}
-
-</script>
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
@@ -747,16 +726,16 @@ const categories = [
     img: "fashion-shoot.jpg",
     video: ""
   },
-  {
-    name: "Travel",
-    img: "travel-shoot.jpg",
-    video: ""
-  }
-    {
-    name: "Events/Concert",
-    img: "concert-shoot.jpg",
-    video: ""
-  }
+{
+  name: "Travel",
+  img: "travel-shoot.jpg",
+  video: ""
+},
+{
+  name: "Events/Concert",
+  img: "concert-shoot.jpg",
+  video: ""
+}
 ];
   function openModal(imgSrc, videoSrc) {
     const modal = document.getElementById('mediaModal');
