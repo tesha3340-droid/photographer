@@ -649,12 +649,32 @@ section {
       <div class="portfolio-grid" id="portfolioGrid"></div>
     </div>
   </section>
+  
+ <script>
 
+const grid = document.getElementById('portfolioGrid');
 
- </section>  <!-- portfolio ends -->
+function buildPortfolio() {
+  categories.forEach((cat) => {
+    const item = document.createElement('div');
+    item.className = 'portfolio-item';
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
+    item.innerHTML = `
+      <img src="${cat.img}" alt="${cat.name}">
+      <div class="portfolio-overlay">${cat.name}</div>
+    `;
+
+    item.addEventListener('click', () => {
+      openModal(cat.img, cat.video);
+    });
+
+    grid.appendChild(item);
+  });
+}
+
+</script>
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
     <div class="container">
       <h2>Kind Words</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 30px;">
