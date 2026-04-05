@@ -28,7 +28,8 @@
 }
 
 .about-img img {
-  max-height: 400px;
+  width: 100%;
+  border-radius: 24px;
   object-fit: cover;
 }
 
@@ -215,10 +216,7 @@ section {
   background-size: cover;
 
   /* 🔥 THIS CONTROLS POSITION */
- @media (max-width: 768px) {
-  .hero {
-    background-position: center;
-  }
+  background-position: center 30%; 
 }
     .hero::before {
       content: '';
@@ -257,19 +255,9 @@ section {
 }
 
 @media (max-width: 768px) {
-  .about-wrapper {
-    flex-direction: column;
-  }
-
-  .about-img,
-  .about-content {
-    width: 100%;
-  }
-
-  .about-img img {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
+  .hero-main-text {
+    white-space: normal; /* allow wrap on mobile */
+    font-size: 2rem;
   }
 }
 
@@ -523,9 +511,9 @@ section {
       justify-content: center;
     }
     @media (max-width: 800px) {
-    .contact-grid {
-  grid-template-columns: 1fr;
-}
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -546,7 +534,7 @@ section {
       <li><a href="#experience">Experience</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#testimonials">Reviews</a></li>
-      <a href="#contact">Contact</a>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -664,27 +652,6 @@ section {
   
  <script>
 
-const grid = document.getElementById('portfolioGrid');
-
-function buildPortfolio() {
-  categories.forEach((cat) => {
-    const item = document.createElement('div');
-    item.className = 'portfolio-item';
-
-    item.innerHTML = `
-      <img src="${cat.img}" alt="${cat.name}">
-      <div class="portfolio-overlay">${cat.name}</div>
-    `;
-
-    item.addEventListener('click', () => {
-      openModal(cat.img, cat.video);
-    });
-
-    grid.appendChild(item);
-  });
-}
-
-</script>
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
