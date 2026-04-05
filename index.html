@@ -28,8 +28,7 @@
 }
 
 .about-img img {
-  width: 100%;
-  border-radius: 24px;
+  max-height: 400px;
   object-fit: cover;
 }
 
@@ -216,7 +215,10 @@ section {
   background-size: cover;
 
   /* 🔥 THIS CONTROLS POSITION */
-  background-position: center 30%; 
+ @media (max-width: 768px) {
+  .hero {
+    background-position: center;
+  }
 }
     .hero::before {
       content: '';
@@ -255,9 +257,19 @@ section {
 }
 
 @media (max-width: 768px) {
-  .hero-main-text {
-    white-space: normal; /* allow wrap on mobile */
-    font-size: 2rem;
+  .about-wrapper {
+    flex-direction: column;
+  }
+
+  .about-img,
+  .about-content {
+    width: 100%;
+  }
+
+  .about-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
   }
 }
 
