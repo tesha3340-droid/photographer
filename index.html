@@ -75,7 +75,8 @@ section {
     }
 
     h1, h2, h3, .logo, .tagline, .hero-name {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormoran
+      t Garamond', serif;
       font-weight: 500;
     }
 
@@ -208,12 +209,12 @@ section {
   min-height: 90vh;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 80px;
+  align-items: center;
+  padding-bottom: 40px;
   position: relative;
 
-  background: url('wedding.jpg') no-repeat;
-  background-size: cover;
+  background: url('wedding.jpg') no-repeat center center/cover;
+}
 
   /* 🔥 THIS CONTROLS POSITION */
   background-position: center 30%; 
@@ -255,12 +256,23 @@ section {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    background-position: center;
+  }
+
   .hero-main-text {
-    white-space: normal; /* allow wrap on mobile */
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .about-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
-
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -511,7 +523,7 @@ section {
       justify-content: center;
     }
     @media (max-width: 800px) {
-      .contact us-grid {
+      .contact-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -534,7 +546,7 @@ section {
       <li><a href="#experience">Experience</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#contact us">Contact us</a></li>
+     <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -659,10 +671,10 @@ function buildPortfolio() {
     const item = document.createElement('div');
     item.className = 'portfolio-item';
 
-    item.innerHTML = 
+    item.innerHTML = `
       <img src="${cat.img}" alt="${cat.name}">
       <div class="portfolio-overlay">${cat.name}</div>
-    ;
+    `;
 
     item.addEventListener('click', () => {
       openModal(cat.img, cat.video);
@@ -671,7 +683,7 @@ function buildPortfolio() {
     grid.appendChild(item);
   });
 }
-
+   
 </script>
   <!-- TESTIMONIALS -->
   <section id="testimonials">
@@ -764,13 +776,15 @@ const categories = [
     modalContent.innerHTML = '';
     const isVideo = videoSrc && true; 
     const media = document.createElement('div');
-    media.innerHTML = 
-      <img src="${imgSrc}" style="max-width:100%; border-radius:12px; display:block;" id="modalImg">
-      <video controls autoplay muted style="display:none; max-width:100%; border-radius:12px;" id="modalVideo"><source src="${videoSrc}" type="video/mp4"></video>
-      <div style="text-align:center; margin-top:20px;">
-        <button class="btn btn-outline" id="toggleMediaBtn">Watch Video</button>
-      </div>
-    ;
+   media.innerHTML = `
+  <img src="${imgSrc}" style="max-width:100%; border-radius:12px; display:block;" id="modalImg">
+  <video controls autoplay muted style="display:none; max-width:100%; border-radius:12px;" id="modalVideo">
+    <source src="${videoSrc}" type="video/mp4">
+  </video>
+  <div style="text-align:center; margin-top:20px;">
+    <button class="btn btn-outline" id="toggleMediaBtn">Watch Video</button>
+  </div>
+`;
     modalContent.appendChild(media);
     const imgEl = document.getElementById('modalImg');
     const vidEl = document.getElementById('modalVideo');
