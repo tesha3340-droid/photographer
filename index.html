@@ -511,7 +511,7 @@ section {
       justify-content: center;
     }
     @media (max-width: 800px) {
-      .contact-grid {
+      .contact us-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -534,7 +534,7 @@ section {
       <li><a href="#experience">Experience</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact us">Contact us</a></li>
     </ul>
   </div>
 </nav>
@@ -652,6 +652,27 @@ section {
   
  <script>
 
+const grid = document.getElementById('portfolioGrid');
+
+function buildPortfolio() {
+  categories.forEach((cat) => {
+    const item = document.createElement('div');
+    item.className = 'portfolio-item';
+
+    item.innerHTML = 
+      <img src="${cat.img}" alt="${cat.name}">
+      <div class="portfolio-overlay">${cat.name}</div>
+    ;
+
+    item.addEventListener('click', () => {
+      openModal(cat.img, cat.video);
+    });
+
+    grid.appendChild(item);
+  });
+}
+
+</script>
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
@@ -743,13 +764,13 @@ const categories = [
     modalContent.innerHTML = '';
     const isVideo = videoSrc && true; 
     const media = document.createElement('div');
-    media.innerHTML = `
+    media.innerHTML = 
       <img src="${imgSrc}" style="max-width:100%; border-radius:12px; display:block;" id="modalImg">
       <video controls autoplay muted style="display:none; max-width:100%; border-radius:12px;" id="modalVideo"><source src="${videoSrc}" type="video/mp4"></video>
       <div style="text-align:center; margin-top:20px;">
         <button class="btn btn-outline" id="toggleMediaBtn">Watch Video</button>
       </div>
-    `;
+    ;
     modalContent.appendChild(media);
     const imgEl = document.getElementById('modalImg');
     const vidEl = document.getElementById('modalVideo');
