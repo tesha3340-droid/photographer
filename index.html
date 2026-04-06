@@ -21,26 +21,25 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  flex-wrap: wrap;
 }
 
 .about-img {
   flex: 1;
-  max-width: 450px; /* controls size */
+  max-width: 480px;
 }
 
 .about-img img {
   width: 100%;
-  height: 500px; /* fixed height = clean layout */
+  height: 520px;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 20px;
 }
 
-.about-content p {
-  color: #ccc;
-  font-size: 1.05rem;
+.about-content {
+  flex: 1;
+  max-width: 600px;
 }
-    
+
 .about-highlight {
   font-family: 'Cormorant Garamond', serif;
   color: #d4af37;
@@ -48,7 +47,6 @@
   font-weight: 500;
   line-height: 1.3;
   margin-bottom: 20px;
-  letter-spacing: 0.5px;
 }
 /* existing code continues */
 section {
@@ -278,10 +276,6 @@ section {
   .about-wrapper {
     flex-direction: column;
     text-align: center;
-  }
-
-  .about-img {
-    max-width: 100%;
   }
 
   .about-img img {
@@ -580,43 +574,37 @@ section {
   <!-- ABOUT -->
   <section id="about">
   <div class="container">
-    
-    <h2>About Me</h2>
 
     <div class="about-wrapper">
-      
+
       <!-- LEFT IMAGE -->
       <div class="about-img">
-        <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aarav">
+        <img src="your-image.jpg" alt="Aarav">
       </div>
 
       <!-- RIGHT CONTENT -->
       <div class="about-content">
-    <h2 class="about-highlight">
-  Hi, I’m Aarav — Photographer & Cinematographer
-</h2>
+        <h2 class="about-highlight">
+          Hi, I’m Aarav — Photographer & Cinematographer
+        </h2>
 
-      <p style="font-size:1.2rem; margin-bottom:20px; line-height:1.8;">
-  I believe every frame tells a story — from the nervous laughter before a wedding to the raw energy of a concert. With over 5 years behind the lens, I don't just capture photos; I preserve emotions.
-</p>
+        <p>
+          I believe every frame tells a story — from the nervous laughter before a wedding 
+          to the raw energy of a concert. With over 5 years behind the lens, I don't just 
+          capture photos; I preserve emotions.
+        </p>
 
-<p style="margin-bottom:20px; line-height:1.8;">
-  My mission is to create cinematic memories that resonate for a lifetime.
-</p>
+        <p>
+          My mission is to create cinematic memories that resonate for a lifetime.
+        </p>
 
-<p style="margin-bottom:12px; line-height:1.8;">
-  <strong>Vision:</strong> To redefine visual storytelling with authenticity and elegance.
-</p>
-
-<p style="margin-bottom:12px; line-height:1.8;">
-  <strong>Mission:</strong> Bring out the unseen beauty in every moment.
-</p>
-
-<p style="line-height:1.8;">
-  <strong>Vision:</strong> Become India's most trusted luxury visual artist.
-</p>
+        <p><strong>Vision:</strong> To redefine visual storytelling with authenticity and elegance.</p>
+        <p><strong>Mission:</strong> Bring out the unseen beauty in every moment.</p>
+        <p><strong>Vision:</strong> Become India's most trusted luxury visual artist.</p>
+      </div>
 
     </div>
+
   </div>
 </section>
 
